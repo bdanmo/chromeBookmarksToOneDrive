@@ -1,5 +1,5 @@
 # Define the paths
-$tempBookmarksPath = [System.IO.Path]::Combine($env:TEMP, "Google", "Chrome", "User Data", "Default", "Bookmarks")
+$localBookmarksPath = [System.IO.Path]::Combine($env:LOCALAPPDATA, "Google", "Chrome", "User Data", "Default", "Bookmarks")
 $oneDriveBookmarksPath = [System.IO.Path]::Combine($env:USERPROFILE, "OneDrive - Senneca Holdings", "Bookmarks", "Bookmarks")
  
 # Ensure the target directory exists
@@ -26,7 +26,7 @@ function Copy-BookmarksFile($source, $destination) {
 }
  
 # Copy from %TEMP% to OneDrive if the OneDrive file is older or doesn't exist
-Copy-BookmarksFile -source $tempBookmarksPath -destination $oneDriveBookmarksPath
+Copy-BookmarksFile -source $localBookmarksPath -destination $oneDriveBookmarksPath
  
 # Now the inverse, from OneDrive to %TEMP% if the %TEMP% file is older or doesn't exist
-Copy-BookmarksFile -source $oneDriveBookmarksPath -destination $tempBookmarksPath
+Copy-BookmarksFile -source $oneDriveBookmarksPath -destination $localBookmarksPath
